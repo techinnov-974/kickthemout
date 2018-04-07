@@ -14,15 +14,15 @@ BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m'
 try:
     # check whether user is root
     if os.geteuid() != 0:
-        print("\n{}ERROR: KickThemOut must be run with root privileges. Try again with sudo:\n\t{}$ sudo python3 kickthemout.py{}\n".format(RED, GREEN, END))
+        print("\n{}ERROR: KickThemOut doit être exécuté avec les privilèges root. Essayez à nouveau avec sudo:\n\t{}$ sudo python3 kickthemout.py{}\n".format(RED, GREEN, END))
         os._exit(1)
 except:
     # then user is probably on windows
     pass
 
 def shutdown():
-    print('\n\n{}Thanks for dropping by.'
-          '\nCatch ya later!{}'.format(GREEN, END))
+    print('\n\n{}Merci d'être passé.'
+          '\nCatch plus tard!{}'.format(GREEN, END))
     os._exit(1)
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)  # Shut up scapy!
@@ -35,8 +35,8 @@ try:
 except KeyboardInterrupt:
     shutdown()
 except:
-    print("\n{}ERROR: Requirements have not been satisfied properly. Please look at the README file for configuration instructions.".format(RED))
-    print("\n{}If you still cannot resolve this error, please submit an issue here:\n\t{}https://github.com/k4m4/kickthemout/issues\n\n{}Details: {}{}{}".format(RED, BLUE, RED, GREEN, str(sys.exc_info()[1]), END))
+    print("\n{}ERREUR: les exigences n'ont pas été satisfaites correctement. Veuillez regarder le fichier README pour les instructions de configuration.".format(RED))
+    print("\n{}Si vous ne pouvez toujours pas résoudre cette erreur, veuillez soumettre un problème ici:\n\t{}https://github.com/k4m4/kickthemout/issues\n\n{}Details: {}{}{}".format(RED, BLUE, RED, GREEN, str(sys.exc_info()[1]), END))
     os._exit(1)
 
 
@@ -80,7 +80,7 @@ def scanningAnimation(text):
 
 # display options
 def optionBanner():
-    print('\nChoose an option from the menu:\n')
+    print('\nChoisissez une option dans le menu:\n')
     sleep(0.2)
     print('\t{}[{}1{}]{} Kick ONE Off'.format(YELLOW, RED, YELLOW, WHITE))
     sleep(0.2)
@@ -94,7 +94,7 @@ def optionBanner():
 
 # initiate debugging process
 def runDebug():
-    print("\n\n{}WARNING! An unknown error has occurred, starting debug...{}".format(RED, END))
+    print("\n\n{}ATTENTION! Une erreur inconnue s'est produite, en commençant le débogage ...{}".format(RED, END))
     print(
     "{}Starting debug... (Please report this crash on 'https://github.com/k4m4/kickthemout/issues' with your private information removed where necessary){}".format(
         RED, END))
@@ -687,7 +687,7 @@ def main():
             shutdown()
         stopAnimation = True
     
-        print("\nOnline IPs: ")
+        print("\nIP en ligne: ")
         for i in range(len(onlineIPs)):
             mac = ""
             for host in hostsList:
@@ -712,7 +712,7 @@ if __name__ == '__main__':
     optparse.OptionParser.format_epilog = lambda self, formatter: self.epilog
 
     version = '2.0'
-    examples = ('\nExamples:\n'+
+    examples = ('\nExemples:\n'+
                 '  sudo python3 kickthemout.py --target 192.168.1.10 \n'+
                 '  sudo python3 kickthemout.py -t 192.168.1.5,192.168.1.10 -p 30\n'+
                 '  sudo python3 kickthemout.py -s\n'+
@@ -766,7 +766,7 @@ if __name__ == '__main__':
         interactive = True
         global stopAnimation
         stopAnimation = False
-        t = threading.Thread(target=scanningAnimation, args=('Scanning your network, hang on...',))
+        t = threading.Thread(target=scanningAnimation, args=('Scanner votre réseau, accrochez-vous...',))
         t.daemon = True
         t.start()
 
